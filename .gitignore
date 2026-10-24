@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+output/
+.preview/
+*.tsbuildinfo
+.DS_Store
+.env*.local
+verification/*.png
+verification/*.jpg
+
+next-env.d.ts

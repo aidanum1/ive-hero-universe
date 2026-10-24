@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1050" viewBox="0 0 800 1050">
+<defs><pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#101014" opacity=".22"/></pattern></defs>
+<path fill="#f0ebdd" d="M0 0h800v1050H0z"/><path fill="#8552ff" d="m52 88 684 30-46 870-636-15z"/>
+<path fill="url(#dots)" d="M52 88h684v900H52z"/><g fill="none" stroke="#101014" stroke-width="8"><path d="m35 72 718 34-39 899-672-17z"/><path d="m52 88 684 30-46 870-636-15z"/></g>
+<path d="m90 128 520 0-520 560z" fill="#ceb8ff"/><path d="m736 437-30 551-380-13z" fill="#101014"/>
+<g fill="#101014"><path d="M32 24h126v18H32zM658 28h110v8H658zM658 44h110v4H658zM42 1019h160v8H42z"/><path d="m662 151 7 31 30-13-19 25 27 19-33-1-4 32-10-30-30 12 20-24-24-20 31 2z"/></g>
+<g stroke="#f0ebdd" stroke-width="2" opacity=".7"><path d="m81 829 125-108M76 874l202-173M86 918l261-205M528 263l169-111M533 305l168-118M555 332l140-90"/></g>
+<g fill="#f0ebdd"><path d="M595 917h20v50h-20zM628 917h20v50h-20zM660 917h20v50h-20z"/></g>
+</svg>

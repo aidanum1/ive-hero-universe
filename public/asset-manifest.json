@@ -1,0 +1,48 @@
+{
+  "artwork": [
+    {
+      "path": "heroes/captain-purple.webp",
+      "source": "Original built-in imagegen generation, 2026-10-24",
+      "sourceFile": "artwork/captain-purple-source.png",
+      "prompt": "artwork/PROMPT.md",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 615596,
+      "alpha": true,
+      "subject": "Original fictional adult superhero; not a real member portrait"
+    }
+  ],
+  "graphics": [
+    {
+      "path": "assets/comic-page.svg",
+      "source": "Original project SVG",
+      "license": "Project artwork"
+    },
+    {
+      "path": "assets/page-frame.svg",
+      "source": "Original project SVG",
+      "license": "Project artwork"
+    },
+    {
+      "path": "icon.svg",
+      "source": "Original project SVG",
+      "license": "Project artwork"
+    }
+  ],
+  "fonts": [
+    {
+      "family": "Anton",
+      "source": "@fontsource/anton",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/Anton-OFL.txt"
+    },
+    {
+      "family": "IBM Plex Mono",
+      "source": "@fontsource/ibm-plex-mono",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "licenses/IBM-Plex-Mono-OFL.txt"
+    }
+  ],
+  "audio": "Original Web Audio oscillator synthesis. No recordings or external music.",
+  "reference": "Awwwards Prometheus Fuels interaction study only. No reference-site assets were copied."
+}
