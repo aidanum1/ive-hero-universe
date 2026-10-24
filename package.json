@@ -1,46 +1,44 @@
 {
-  "name": "ive-hero-universe",
+  "name": "ive",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --hostname 0.0.0.0",
+    "dev": "next dev",
     "build": "next build",
-    "preview": "node scripts/preview.mjs",
-    "typecheck": "next typegen && tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts",
-    "lint": "eslint .",
-    "studio": "remotion studio remotion/index.ts",
-    "video:still": "remotion still remotion/index.ts CaptainPurpleIntro output/captain-purple.png --frame=840",
-    "video:render": "remotion render remotion/index.ts CaptainPurpleIntro output/captain-purple.mp4"
-  },
-  "engines": {
-    "node": ">=22"
+    "start": "next start",
+    "lint": "eslint src",
+    "studio": "remotion studio",
+    "render:all": "bash scripts/render-all.sh",
+    "render:og": "remotion still OgImage public/og.png",
+    "fonts": "node scripts/fetch-fonts.mjs",
+    "typecheck": "tsc --noEmit",
+    "build:pages": "STATIC_EXPORT=1 next build",
+    "sfx": "node scripts/build-sfx.mjs"
   },
   "dependencies": {
-    "@fontsource/anton": "5.3.0",
-    "@fontsource/ibm-plex-mono": "5.3.0",
-    "@react-three/drei": "10.7.9",
-    "@react-three/fiber": "9.8.2",
-    "gsap": "3.15.0",
+    "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "@remotion/fonts": "4.0.538",
+    "@remotion/media": "4.0.538",
+    "@remotion/player": "4.0.538",
+    "gsap": "^3.15.0",
     "next": "16.4.3",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "remotion": "4.0.538",
-    "three": "0.186.1"
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@remotion/cli": "4.0.538",
-    "@types/node": "26.6.5",
-    "@types/react": "19.3.0",
-    "@types/react-dom": "19.3.0",
-    "@types/three": "0.186.0",
-    "eslint": "9.39.5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.186.0",
+    "eslint": "^9",
     "eslint-config-next": "16.4.3",
-    "prettier": "3.9.10",
-    "tsx": "4.23.15",
-    "typescript": "6.0.3"
-  },
-  "overrides": {
-    "zod": "4.6.7"
+    "puppeteer-core": "^25.16.0",
+    "typescript": "^5",
+    "zod": "4.5.4"
   }
 }

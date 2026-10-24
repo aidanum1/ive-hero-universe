@@ -1,0 +1,90 @@
+@property --rx {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --ry {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+@property --flip {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+@property --lift {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.scene {
+  perspective: 1400px;
+  width: 100%;
+}
+.card {
+  --px: 0.5;
+  --py: 0.5;
+  --hover: 0;
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 630 / 880;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--lift) * 80px)) rotateX(calc(var(--rx) * 1deg)) rotateY(calc(var(--ry) * 1deg + var(--flip)));
+  border-radius: 4.6% / 3.3%;
+}
+.card[data-flipped="true"] {
+  --flip: 180deg;
+}
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 4.6% / 3.3%;
+  overflow: hidden;
+  box-shadow: calc(10px - var(--ry) * 0.4px) calc(14px + var(--rx) * 0.4px) 0 rgba(14, 13, 18, 0.55);
+}
+.back {
+  transform: rotateY(180deg);
+}
+.foil {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      calc(110deg + var(--ry) * 2deg),
+      rgba(255, 0, 140, 0.55) 0%,
+      rgba(255, 230, 0, 0.5) 6%,
+      rgba(0, 220, 160, 0.5) 12%,
+      rgba(0, 170, 255, 0.55) 18%,
+      rgba(180, 80, 255, 0.55) 24%,
+      rgba(255, 0, 140, 0.55) 30%
+    ),
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1.6px) 0 0 / 7px 7px;
+  background-size:
+    300% 300%,
+    7px 7px;
+  background-position:
+    calc(var(--px) * 100%) calc(var(--py) * 100%),
+    0 0;
+  mix-blend-mode: color-dodge;
+  opacity: calc(0.14 + var(--hover) * 0.32);
+  pointer-events: none;
+}
+.glare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at calc(var(--px) * 100%) calc(var(--py) * 100%), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0) 45%);
+  mix-blend-mode: overlay;
+  opacity: calc(var(--hover) * 0.9);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: --flip 0.7s var(--ease-overshoot-soft);
+  }
+}

@@ -1,0 +1,9 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  background: var(--c-ink);
+  box-shadow:
+    0 0 0 3px var(--c-ink),
+    0 0 0 6px var(--hero, var(--c-paper)),
+    10px 10px 0 6px var(--c-ink);
+}

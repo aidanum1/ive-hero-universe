@@ -1,0 +1,99 @@
+.page {
+  --gutter: clamp(16px, 2.6vw, 40px);
+  background: var(--c-ink);
+}
+
+.kicker {
+  font-family: var(--f-pixel);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+}
+
+/* ───────── Remotion cut ───────── */
+.cut {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 400px);
+  gap: clamp(28px, 6vw, 96px);
+  align-items: center;
+  padding: clamp(48px, 8vw, 120px) var(--gutter);
+  background: var(--c-ink);
+  color: var(--c-paper);
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--hero) 40%, transparent) 22%, transparent 24%);
+  background-size: 14px 14px;
+}
+.cutCopy {
+  max-width: 40rem;
+}
+.cutTitle {
+  margin-top: 0.6rem;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 5.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: capitalize;
+  color: var(--hero);
+}
+.cutBody {
+  margin-top: 1.2rem;
+  max-width: 46ch;
+  font-size: var(--t-lead);
+}
+.cutMeta {
+  margin-top: 1.4rem;
+  font-family: var(--f-pixel);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--hero-2);
+}
+.cutPlayer {
+  width: 100%;
+}
+.playerLoading {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 9 / 16;
+  background: var(--c-ink-soft);
+  color: var(--c-paper);
+  font-family: var(--f-pixel);
+  border: 3px solid var(--hero);
+}
+
+/* ───────── card ───────── */
+.cardSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+  gap: clamp(28px, 6vw, 96px);
+  align-items: center;
+  padding: clamp(48px, 8vw, 120px) var(--gutter);
+  background: var(--hero-2);
+  color: var(--c-ink);
+  background-image: repeating-linear-gradient(-28deg, transparent 0 14px, color-mix(in srgb, var(--hero) 22%, transparent) 14px 16px);
+}
+.cardTitle {
+  margin-top: 0.6rem;
+  font-family: var(--f-display);
+  font-size: clamp(2.4rem, 5.6vw, 5.4rem);
+  line-height: 0.95;
+}
+.cardWrap {
+  width: 100%;
+  max-width: 420px;
+  justify-self: center;
+}
+
+@media (max-width: 719px) {
+  .cut,
+  .cardSection {
+    grid-template-columns: 1fr;
+  }
+  .cutPlayer {
+    max-width: 340px;
+    justify-self: center;
+  }
+  .cardWrap {
+    max-width: 300px;
+  }
+}

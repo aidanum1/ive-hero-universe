@@ -1,0 +1,225 @@
+.dossier {
+  --gutter: clamp(16px, 2.6vw, 40px);
+  position: relative;
+  padding: clamp(28px, 5vw, 72px) var(--gutter) clamp(48px, 7vw, 110px);
+  background: var(--c-paper);
+  color: var(--c-ink);
+  background-image: radial-gradient(circle, rgba(14, 13, 18, 0.07) 22%, transparent 24%);
+  background-size: 9px 9px;
+}
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--c-ink);
+  font-family: var(--f-pixel);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+.stamp {
+  margin-left: auto;
+  padding: 2px 8px;
+  border: 2px solid var(--c-signal);
+  color: var(--c-signal);
+  transform: rotate(-3deg);
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 80px);
+  margin-top: clamp(24px, 4vw, 56px);
+}
+.mask {
+  display: block;
+  overflow: hidden;
+}
+.mask > span {
+  display: inline-block;
+}
+.kicker {
+  font-family: var(--f-wide);
+  font-weight: 800;
+  font-stretch: 125%;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+}
+.title {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.8rem, 6.4vw, 6.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: capitalize;
+  color: var(--hero-deep);
+}
+.bio {
+  margin-top: 1.4rem;
+  max-width: 36ch;
+  font-family: var(--f-serif);
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  line-height: 1.32;
+}
+.bio::first-letter {
+  float: left;
+  margin: 0.06em 0.12em 0 0;
+  font-family: var(--f-display);
+  font-size: 3.4em;
+  line-height: 0.8;
+  color: var(--hero);
+  text-shadow: 0.05em 0.05em 0 var(--c-ink);
+}
+.block {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--c-ink);
+  max-width: 40rem;
+}
+.blockLabel {
+  font-family: var(--f-pixel);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+.blockTitle {
+  margin-top: 0.3rem;
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  line-height: 1;
+}
+.blockBody {
+  margin-top: 0.5rem;
+  max-width: 52ch;
+}
+.motion {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+.plot {
+  width: 100%;
+  height: auto;
+  background: var(--c-white);
+  border: 2px solid var(--c-ink);
+  box-shadow: 5px 5px 0 var(--hero);
+  overflow: visible;
+}
+.facts {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+.facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed rgba(14, 13, 18, 0.35);
+  font-family: var(--f-pixel);
+  font-size: 0.8rem;
+}
+.facts dd {
+  margin: 0;
+  color: var(--hero-deep);
+}
+
+/* ───────── side figures ───────── */
+.side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-content: start;
+}
+.side figure {
+  margin: 0;
+  padding: 14px;
+  background: var(--c-white);
+  border: 2px solid var(--c-ink);
+}
+.side figcaption {
+  margin-top: 8px;
+  font-family: var(--f-pixel);
+  font-size: 0.72rem;
+}
+.maskFig {
+  grid-column: span 2;
+}
+.maskSvg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.emblemSvg {
+  width: 100%;
+  height: auto;
+}
+.statFig {
+  display: grid;
+}
+.hex {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.swatches {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.swatches li {
+  display: grid;
+  gap: 4px;
+}
+.chip {
+  display: block;
+  aspect-ratio: 1.3;
+  border: 2px solid var(--c-ink);
+}
+.swLabel {
+  font-family: var(--f-wide);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+}
+.swHex {
+  font-family: var(--f-pixel);
+  font-size: 0.78rem;
+}
+.side > figure:nth-of-type(2) {
+  order: 3;
+}
+.statFig {
+  order: 4;
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 719px) {
+  .swatches {
+    gap: 6px;
+  }
+  .chip {
+    aspect-ratio: 1;
+  }
+  .swLabel {
+    font-size: 0.48rem;
+    letter-spacing: 0.08em;
+  }
+  .swHex {
+    font-size: 0.62rem;
+  }
+  .motion {
+    grid-template-columns: 1fr;
+  }
+  .stamp {
+    margin-left: 0;
+  }
+}

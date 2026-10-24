@@ -1,0 +1,118 @@
+.posters {
+  --gutter: clamp(16px, 2.6vw, 40px);
+  position: relative;
+  overflow: hidden;
+  background: var(--c-paper-deep);
+  color: var(--c-ink);
+  background-image: repeating-linear-gradient(90deg, transparent 0 79px, rgba(14, 13, 18, 0.07) 79px 80px);
+}
+.track {
+  display: flex;
+  align-items: center;
+  gap: clamp(28px, 4vw, 64px);
+  width: max-content;
+  min-height: 100svh;
+  padding: 96px var(--gutter) 48px;
+}
+.intro {
+  flex: none;
+  width: min(32rem, 82vw);
+}
+.kicker {
+  font-family: var(--f-pixel);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+.title {
+  margin-top: 0.6rem;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(2.4rem, 4.4vw, 4.4rem);
+  line-height: 0.92;
+}
+.title em {
+  display: block;
+  margin-top: 0.2em;
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.72em;
+  line-height: 1;
+  color: var(--yujin-deep);
+}
+.lede {
+  margin-top: 1.2rem;
+  max-width: 40ch;
+  font-size: var(--t-lead);
+}
+.scrollHint {
+  margin-top: 1.6rem;
+  font-family: var(--f-pixel);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+.poster {
+  flex: none;
+  margin: 0;
+  width: min(44vh, 420px);
+}
+.art {
+  border: 4px solid var(--c-ink);
+  box-shadow: 14px 14px 0 var(--c-ink);
+  transform-origin: 50% 60%;
+  transition: translate var(--d-base) var(--ease-overshoot);
+}
+.poster:hover .art {
+  translate: 0 -10px;
+}
+.caption {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  margin-top: 26px;
+  font-family: var(--f-wide);
+}
+.no {
+  grid-row: span 2;
+  font-family: var(--f-display);
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--accent);
+  -webkit-text-stroke: 1.5px var(--c-ink);
+}
+.capTitle {
+  font-weight: 900;
+  font-stretch: 112%;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+.capNote {
+  font-family: var(--f-pixel);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 1099px) {
+  .posters {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .posters::-webkit-scrollbar {
+    display: none;
+  }
+  .track {
+    min-height: 0;
+    padding-top: 88px;
+    padding-bottom: 56px;
+    align-items: flex-start;
+  }
+  .intro,
+  .poster {
+    scroll-snap-align: start;
+    scroll-margin-left: var(--gutter);
+  }
+  .poster {
+    width: min(76vw, 360px);
+  }
+}

@@ -1,0 +1,495 @@
+.opening {
+  --gutter: clamp(16px, 2.4vw, 36px);
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+  background: var(--c-ink);
+  color: var(--c-ink);
+  isolation: isolate;
+}
+
+/* ───────── printed page ───────── */
+.page {
+  position: absolute;
+  inset: 0;
+  background: var(--c-paper);
+}
+.monogram {
+  position: absolute;
+  inset: 0;
+  opacity: 0.85;
+}
+.dots {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--c-ink) 24%, transparent 26%) 0 0 / 9px 9px;
+  opacity: 0.1;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, transparent 35%, #000 100%);
+}
+
+.camera {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform-origin: 50% 42%;
+  will-change: transform;
+}
+
+.lines {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  max-width: none;
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+/* ───────── title ───────── */
+.title {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -14vh;
+  font-weight: 400;
+}
+
+.ive {
+  display: flex;
+  font-family: var(--f-display);
+  font-size: clamp(9rem, 26vw, 25rem);
+  line-height: 0.8;
+  letter-spacing: 0.01em;
+  color: var(--c-ink);
+  text-shadow:
+    0.018em 0.018em 0 var(--yujin),
+    0.036em 0.036em 0 var(--gaeul),
+    0.054em 0.054em 0 var(--rei),
+    0.072em 0.072em 0 var(--wonyoung),
+    0.09em 0.09em 0 var(--liz),
+    0.108em 0.108em 0 var(--leeseo);
+}
+.letter {
+  display: inline-block;
+  transform-origin: 50% 70%;
+  will-change: transform;
+}
+
+.band {
+  position: absolute;
+  left: 50%;
+  bottom: -0.02em;
+  width: 118vw;
+  height: clamp(3.2rem, 8.4vw, 8.6rem);
+  margin-left: -59vw;
+  background: var(--c-ink);
+  transform: rotate(-3.5deg);
+  transform-origin: 50% 50%;
+  z-index: 0;
+}
+
+.words {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.32em;
+  margin-top: clamp(0.6rem, 2.6vw, 2.4rem);
+  font-family: var(--f-wide);
+  font-weight: 900;
+  font-stretch: 125%;
+  font-size: clamp(1.9rem, 6.2vw, 6.4rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--c-paper);
+  transform: rotate(-3.5deg);
+}
+.word {
+  display: inline-block;
+}
+
+.spark {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(0.4rem, 3vw, 3rem);
+  width: clamp(70px, 9vw, 150px);
+  height: auto;
+  transform: translate(-50%, 0);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ───────── tagline ───────── */
+.tagline {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(48px, 7vh, 80px);
+  display: grid;
+  gap: 0.1rem;
+  max-width: 52ch;
+}
+.mask {
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+.mask > span {
+  display: inline-block;
+}
+.voice {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2vw, 2.1rem);
+  line-height: 1.05;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+.voice em {
+  font-weight: 800;
+  color: var(--wonyoung-deep);
+}
+.kicker {
+  margin-top: 0.6rem;
+  font-family: var(--f-wide);
+  font-weight: 800;
+  font-stretch: 118%;
+  font-size: var(--t-micro);
+  letter-spacing: 0.2em;
+}
+
+.owner {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  pointer-events: auto;
+}
+.owner:hover {
+  color: var(--yujin);
+}
+
+/* ───────── print furniture ───────── */
+.issue {
+  position: absolute;
+  top: calc(var(--gutter) + 56px);
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.35rem 0.7rem 0.35rem 0.5rem;
+  border: 3px solid var(--c-ink);
+  background: var(--c-paper);
+  transform-origin: 0 0;
+}
+.issueNo sup {
+  font-family: var(--f-wide);
+  font-weight: 900;
+  font-size: 0.42em;
+  vertical-align: 0.9em;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+.issueNo {
+  font-family: var(--f-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 1;
+}
+.issueText {
+  font-family: var(--f-wide);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  line-height: 1.35;
+}
+.barcode {
+  position: absolute;
+  top: calc(var(--gutter) + 56px);
+  right: var(--gutter);
+  width: 150px;
+  transform-origin: 100% 0;
+}
+.stamp {
+  position: absolute;
+  right: 7%;
+  bottom: 15%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  width: clamp(110px, 11vw, 160px);
+  aspect-ratio: 1;
+  border: 4px double var(--c-signal);
+  border-radius: 50%;
+  color: var(--c-signal);
+  transform: rotate(-14deg);
+  font-family: var(--f-wide);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: clamp(0.55rem, 0.8vw, 0.72rem);
+  letter-spacing: 0.18em;
+  text-align: center;
+  mix-blend-mode: multiply;
+}
+.stamp strong {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 1.45em;
+  white-space: nowrap;
+  letter-spacing: 0;
+  line-height: 1.1;
+}
+.colorbar {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  display: flex;
+  border: 2px solid var(--c-ink);
+  transform-origin: 100% 100%;
+}
+.colorbar span {
+  width: 16px;
+  height: 16px;
+}
+.reg {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+}
+.regR {
+  left: auto;
+  right: 6px;
+}
+
+/* ───────── press start ───────── */
+.start {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(18px, 4vh, 40px);
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  visibility: hidden;
+  color: var(--c-ink);
+}
+.start[data-live="true"] {
+  visibility: visible;
+}
+.startBlink {
+  font-family: var(--f-pixel);
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  letter-spacing: 0.22em;
+  padding: 0.5em 0.9em 0.45em 1.1em;
+  background: var(--c-ink);
+  color: var(--c-paper);
+}
+.start[data-live="true"] .startBlink {
+  animation: blink 1.2s steps(1) infinite;
+}
+.startHint {
+  font-family: var(--f-wide);
+  font-weight: 800;
+  font-stretch: 112%;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+}
+.start:hover .startBlink,
+.start:focus-visible .startBlink {
+  background: var(--yujin);
+  animation: none;
+}
+@keyframes blink {
+  0%,
+  62% {
+    opacity: 1;
+  }
+  63%,
+  100% {
+    opacity: 0.12;
+  }
+}
+
+/* ───────── boot screen ───────── */
+.boot {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 2rem;
+  padding: 0 clamp(24px, 10vw, 160px);
+  background: var(--c-ink);
+  color: var(--c-paper);
+  font-family: var(--f-pixel);
+  font-size: clamp(0.95rem, 1.4vw, 1.3rem);
+  letter-spacing: 0.08em;
+}
+.bootText {
+  display: grid;
+  gap: 0.4rem;
+}
+.bootBar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  width: min(560px, 100%);
+  padding: 4px;
+  border: 2px solid var(--c-paper);
+}
+.bootBar span {
+  height: 22px;
+  position: relative;
+}
+.bootBar i {
+  position: absolute;
+  top: 130%;
+  left: 0;
+  font-style: normal;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  opacity: 0.8;
+}
+
+.gate {
+  display: grid;
+  gap: 14px;
+  margin-top: 8px;
+}
+.gateTitle {
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  letter-spacing: 0.14em;
+}
+.gateBlink {
+  color: var(--c-signal);
+  animation: blink 1s steps(1) infinite;
+}
+.gateButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.gateOn,
+.gateOff {
+  min-height: 52px;
+  padding: 0 1.3rem;
+  font-family: var(--f-pixel);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  border: 3px solid var(--c-paper);
+}
+.gateOn {
+  background: var(--c-paper);
+  color: var(--c-ink);
+  box-shadow: 6px 6px 0 var(--yujin);
+}
+.gateOn:hover,
+.gateOn:focus-visible {
+  background: var(--rei);
+}
+.gateOff {
+  color: var(--c-paper);
+}
+.gateOff:hover,
+.gateOff:focus-visible {
+  background: var(--c-ink-soft);
+}
+.gateHint {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  opacity: 0.6;
+}
+
+/* ───────── hero bars ───────── */
+.bars {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  pointer-events: none;
+}
+.bar {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(70px, 12vh, 120px) 0 clamp(24px, 6vh, 60px);
+  overflow: hidden;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+.barName {
+  writing-mode: vertical-rl;
+  font-family: var(--f-display);
+  font-size: clamp(1.3rem, 3.4vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.barEmblem {
+  width: clamp(36px, 38%, 120px);
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background: #fff;
+  mix-blend-mode: difference;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ───────── phone ───────── */
+@media (max-width: 719px) {
+  .title {
+    margin-top: -10vh;
+  }
+  .ive {
+    font-size: 33vw;
+  }
+  .band {
+    height: 13vw;
+  }
+  .words {
+    font-size: 8.6vw;
+  }
+  .tagline {
+    left: 50%;
+    bottom: 104px;
+    transform: translateX(-50%);
+    width: calc(100% - 2 * var(--gutter));
+    text-align: center;
+    justify-items: center;
+  }
+  .voice {
+    font-size: 1.55rem;
+  }
+  .kicker {
+    font-size: 0.56rem;
+  }
+  .barcode,
+  .reg,
+  .colorbar {
+    display: none;
+  }
+  .stamp {
+    right: 14px;
+    top: calc(var(--gutter) + 52px);
+    bottom: auto;
+    width: 92px;
+  }
+  .barName {
+    font-size: 1.05rem;
+  }
+  .bootBar i {
+    font-size: 0.5rem;
+    letter-spacing: 0;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}

@@ -1,13 +1,21 @@
+// Remotion CLI / Studio config. Shares the Next.js source tree through the "@" alias.
+import path from "node:path";
 import { Config } from "@remotion/cli/config";
-import { resolve } from "node:path";
+
+Config.setEntryPoint("./src/remotion/index.ts");
 Config.setVideoImageFormat("jpeg");
-Config.setOverwriteOutput(true);
-Config.setRendererPort(3055);
-Config.setStudioPort(3056);
+Config.setJpegQuality(92);
+Config.setConcurrency(4);
+// Keep clear of the Next.js dev server on :3000.
+Config.setStudioPort(3100);
+Config.setRendererPort(3200);
 Config.overrideWebpackConfig((config) => ({
   ...config,
   resolve: {
     ...config.resolve,
-    alias: { ...config.resolve?.alias, "@": resolve("src") },
+    alias: {
+      ...(config.resolve?.alias ?? {}),
+      "@": path.join(process.cwd(), "src"),
+    },
   },
 }));

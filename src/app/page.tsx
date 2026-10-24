@@ -1,4 +1,5 @@
-import { Experience } from "@/components/Experience";
-export default function Home() {
-  return <Experience />;
+import { Home } from "@/web/Home";
+
+export default function Page() {
+  return <Home />;
 }

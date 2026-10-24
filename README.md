@@ -1,97 +1,134 @@
 # IVE HERO UNIVERSE
 
-GitHub Pages için hazırlanan, kaydırma ile yönetilen bir çizgi roman açılışı. Bu sürüm **Prologue + Captain Purple** içerir. Sabit kadraj, derinlikli WebGL sayfası, özgün kahraman illüstrasyonu, büyük editoryal tipografi ve aktivasyon patlaması uygulanmıştır.
+An **unofficial, non-commercial fan-made** interactive motion universe inspired by IVE's
+*Looks Can Kill* / **GIRL HERO** era. Created and owned by **[@emisayda](https://x.com/emisayda)** on X.
+Not affiliated with, endorsed by or connected to IVE or Starship Entertainment. Every
+illustration, emblem, mask, story beat and motion piece is an original fan interpretation.
+No official photography or footage is used.
 
-[Siteyi aç](https://aidanum1.github.io/ive-hero-universe/) · [GitHub deposu](https://github.com/aidanum1/ive-hero-universe)
+The project is two things built from one design system:
 
-## Yerelde çalıştırma
+1. **A responsive interactive website** (Next.js 16 · React 19 · GSAP · SVG · React Three Fiber).
+2. **Reusable Remotion compositions** that render 1080×1920 vertical MP4s for social.
 
-Node.js 22 veya üzeri gerekir.
+---
 
-```sh
-npm ci
-npm run dev
+## Run it
+
+```bash
+npm install
+npm run dev            # website → http://localhost:3000
+npm run studio         # Remotion Studio → http://localhost:3100
+npm run render:all     # every composition (with soundtrack) → renders/*.mp4
+npm run sfx            # re-synthesise public/sfx/*.wav after editing src/audio/sounds.ts
+npm run build:pages    # static export → out/ (what GitHub Pages serves)
 ```
 
-Terminalde gösterilen yerel adresi aç. 3000 doluysa Next.js başka port seçer.
+Single renders:
 
-Kontroller: doğal scroll, **Enter the Page**, alttaki bölüm düğmeleri, 900 ms **Hold to Activate** veya tek tık **Tap to Activate**. Hold düğmesinde Enter/Space da çalışır. Sağ üstte ses, hareket azaltma ve deneyim bilgisi bulunur. Ses varsayılan kapalıdır. Geri scroll sahneyi geri kurar; aktivasyonu kendiliğinden tekrar başlatmaz.
-
-## Statik çıktı ve GitHub Pages
-
-```sh
-npm run build
-npm run preview
+```bash
+npx remotion render YujinGlitchVertical renders/yujin-glitch-vertical.mp4
+npx remotion render HeroPowerVertical --props='{"heroId":"liz"}'
+npx remotion still OgImage public/og.png
 ```
 
-`out/` üretilir; önizleme `http://localhost:4173/` adresindedir. Çalışan bir Next.js sunucusu gerekmez.
+`/system` is a living design-system sheet: colour, type roles, easing curves you can run,
+hero data, FX primitives, the trading card and the composition registry.
 
-Proje alt yolunu yerelde denemek için:
+## What's on the site
 
-```sh
-NEXT_PUBLIC_BASE_PATH=/ive-hero-universe npm run build
-npm run preview -- --base-path /ive-hero-universe --port 4174
+| Section | What it does |
+| --- | --- |
+| **Opening** | Title sequence, not a hero banner: PS2-style boot → six hero bars slam → diagonal panel wipe → I·V·E impact slams (inverted impact frames) → HERO / UNIVERSE collision → print furniture → PRESS START. Any input skips to the composed end frame. |
+| **Hero Select** | Character select built from hero data. Hover / tap / arrow keys / swipe. Each switch: colour panel wipe, cursor jump, the incoming hero's own **motion personality**, name collision, SFX pop. **HOLD TO CHARGE** (mouse, touch or Space) plays her power — Yujin's is the full YUJIN GLITCH. ENTER confirms with an impact frame. |
+| **Hero pages** `/heroes/[id]` | Intro cinematic in her personality, editorial dossier (bio, signature move, her actual easing curve plotted from the tokens, annotated mask, palette, stats), Remotion Player power cut, CSS-3D holo card, prev/next wipe. |
+| **Hero Comics** | A full comic page (*Issue Nº05: Training Day*). Scroll flies a guided-view camera panel to panel with dutch angles; balloons and SFX pop on arrival; pull-back reveal. |
+| **Holo Cards** | The one Three.js scene: the shared SVG cards rasterised to textures (fonts embedded), a holographic foil shader with halftone sparkle, a halftone "printed" floor, a scroll-choreographed camera dolly, then drag / tap / flip. |
+| **Now Showing** | Four original posters (Saul-Bass one-sheet, 90s anime ensemble print, fashion magazine cover, "HERO ON SET" teaser). Pinned horizontal dolly on desktop, swipe on phones. |
+| **Motion Theatre** | Every composition playable via `@remotion/player`, with its render command. |
+| **Release** | Live countdown to **26.10.2026 18:00 KST**, stage-select tracklist, switches to OUT NOW after release. |
+| **Credits** | Film-style roll + explicit fan-made notice. |
+
+## Remotion compositions (1080×1920 @ 30fps)
+
+| id | Length | Notes |
+| --- | --- | --- |
+| `YujinGlitchVertical` | 5.2s | Fancam that drops frames: freeze → purple silhouette split → afterimages → directional displacement → frame tear → energy streak → impact frame → CAPTAIN PURPLE card |
+| `HeroSelectVertical` | 9.9s | Cursor visits all six heroes in their personalities, confirms Captain Purple |
+| `SixHeroesIntro` | 17.5s | Title open, six power bursts back to back, team line-up |
+| `HeroTradingCards` | 9.7s | Deal, fan flip, spotlight + holo glint per card, collector grid |
+| `FakeHeroTrailer` | 21.3s | Ident, title cards, hero flashes, comic dolly, on-set twist, glitch, montage, title slam, poster |
+| `HeroPowerVertical` | 2.4s | Any hero's power (`heroId` prop) |
+| `OgImage` (still) | 1200×630 | Share card in `public/og.png` |
+
+Every video carries the `UNOFFICIAL FAN-MADE BY @EMISAYDA` watermark and its own soundtrack.
+
+## Sound
+
+Every sound effect is **synthesised from code** (`src/audio/synth.ts` + `src/audio/sounds.ts`) —
+36 original, licence-free recipes: retro-game UI blips, comic impacts, print-shop swishes,
+trailer braams and risers, plus one signature move per hero (Captain Purple's zap, Wonder
+Green's gust, Jean Yellow's finger-gun shots, Bat Pink's staff *shing*, Super Blue's
+bullseye *tok*, Spider Red's yo-yo *whirl*). Each hero also has a note in the select-screen
+scale, so moving the cursor plays a little melody.
+
+- **Website:** a Web Audio engine (`src/web/audio/sfx.ts`) synthesises sounds on demand — no
+  audio downloads for interactions. A PRESS START gate asks SOUND ON / OFF (browsers require a
+  gesture), the nav has an SFX toggle (remembered), and HOLD TO CHARGE drives a live,
+  pitch-rising synth voice.
+- **Video:** `scripts/build-sfx.mjs` renders the same recipes to `public/sfx/*.wav`; each
+  composition's cue sheet (`src/sequences/soundtrack.ts`) is keyed to the same beat
+  constants as its visuals and laid onto the timeline as `<Audio>` clips. The site's power
+  sequences fire the same cue sheets through the web engine, so the site and the MP4s sound the same.
+
+## Architecture: one system, three renderers
+
+```
+src/
+  design/        tokens.ts (colour, spacing, fx intensity) · typography.ts · motion.ts (durations
+                 in 30fps base frames, bezier curves → GSAP *and* Remotion) · fonts.ts (manifest)
+                 · cssVars.ts (tokens → CSS custom properties)
+  heroes/        types.ts · roster.ts (the six hero configs) · shapes.ts (path generators)
+  content/       release.ts (real release facts, disclaimer) · project.ts (owner) · sections.ts
+  lib/           ease.ts (cubic-bezier solver) · timeline.ts (frame helpers) · random.ts (seeded)
+  visual/        Pure SVG primitives — HeroPortrait, HeroMask/Emblem, Halftone, speed lines,
+                 bursts, SFX lettering, print marks, StatHex, Monogram, TradingCard, ComicPage, Posters
+  sequences/     Frame-driven sequences: SeqProps { frame } → SVG. registry.ts is the single list
+                 used by Remotion's Root and by the website's Players.
+  remotion/      index.ts · Root.tsx · fonts.ts
+  web/           sections/, hero/, ui/, motion/ (GSAP setup, personalities, sequence clock),
+                 three/ (lazy WebGL gallery)
 ```
 
-`http://localhost:4174/ive-hero-universe/` açılır. Kök kullanıcı/organizasyon sitesi veya özel alan adı için alt yol boş bırakılır.
+- **Hero config** (`src/heroes/roster.ts`) drives everything per hero: name, heroName,
+  primary/secondary/accent/deep colours, logo, mask, portrait, texture,
+  motionPersonality (kind, ease, frames, direction, echoes, shake, hold), powerFX, stats, SFX.
+- **Motion is authored in base frames.** `sec()` converts for GSAP; `toBaseFrame()` lets
+  sequences play at 60fps on the web and 30fps in MP4 with identical choreography.
+- **Same component, three clocks.** A sequence such as `YujinGlitch` is rendered by Remotion,
+  embedded via `@remotion/player`, *and* driven directly by GSAP (`useSequenceClock`) for
+  HOLD TO CHARGE.
+- **Same fonts everywhere.** `scripts/fetch-fonts.mjs` self-hosts the fonts and subsets
+  Korean/Japanese glyphs by scanning `src/` — re-run it after adding CJK copy.
 
-GitHub'a aktarıldığında:
+## Performance & accessibility
 
-1. Kaynakları `main` dalına gönder.
-2. Deponun **Settings → Pages → Source** alanında **GitHub Actions** seç.
-3. **Publish to GitHub Pages** workflow'unu çalıştır veya `main` dalına push yap.
+- 60fps scroll measured across sections on desktop; ~58–60fps on a 4× CPU-throttled phone profile.
+- The WebGL gallery is lazy-loaded near the viewport, stops rendering offscreen, rasterises
+  textures in idle slices and falls back to CSS-3D cards without WebGL.
+- `prefers-reduced-motion`: sequences resolve to their composed end frames, pins and camera
+  moves are removed, players show still frames, holds still work.
+- Keyboard: roster arrows, Space/Enter hold-to-charge, Escape closes the menu, visible focus.
 
-Workflow Pages'in kendi `base_path` çıktısını kullanır; depo adını kodda değiştirmek gerekmez. `.nojekyll` ve bütün yerel font/görsel yolları çıktıya dahildir. Bu deponun her `main` push'unda kontroller ve statik derleme çalışır; başarılı çıktı GitHub Pages'e gönderilir.
+## Deploy (GitHub Pages)
 
-## Mimari
+`.github/workflows/pages.yml` builds on every push to `main`: typecheck → lint →
+`npm run build:pages` (Next static export with the repo sub-path from `actions/configure-pages`)
+→ deploy. Live at **https://aidanum1.github.io/ive-hero-universe/**.
 
-- `src/motion/`: beat aralıkları, süreler, tekrar kullanılabilir efektler ve saf `sampleOpening()` fonksiyonu.
-- `src/scenes/`: normalize sahne ilerlemesi ve `enter/update/exit/dispose` yaşam döngüsünü yöneten SceneManager.
-- `src/controllers/`: yüksek frekanslı dış hareket deposu, etkileşim iptal kuralları ve özgün ses sentezi.
-- `src/components/FrameArt.tsx`: web ve video tarafından paylaşılan grafik sahneler.
-- `src/webgl/WorldCanvas.tsx`: tek, isteğe bağlı render edilen R3F Canvas; sayfa, karakter ve ön çerçeve ayrı derinliklerde. Prologue'dan çıkarken unmount ve texture dispose yapılır.
-- `src/design-system/`: font/renk tokenları, özgün SVG işaretler ve masaüstü/mobil kadrajları. Container query'ler video boyutlarında da aynı kompozisyonu kullanır.
-- `remotion/`: etkileşimden bağımsız, kare sayısıyla sürülen video adaptörü. Remotion web giriş noktasına import edilmez.
+## References
 
-WebGL yüklenirken veya kullanılamadığında aynı sayfanın DOM karşılığı görünür kalır. Hareket azaltıldığında kamera uçuşu, echo, yırtılma ve darbe parlaması kaldırılır. Metin ve kontroller canvas dışında kalır. Erişilebilir açıklama, görünür focus, tek tık aktivasyon ve focus'u içeride tutan bilgi diyaloğu bulunur.
-
-## Remotion
-
-```sh
-npm run studio
-npm run video:still
-npm run video:render
-```
-
-Kompozisyonlar:
-
-- `CaptainPurpleIntro`: 1080 × 1920, 30 fps, 42 saniye.
-- `CaptainPurpleIntroLandscape`: 1920 × 1080, 30 fps, 42 saniye.
-
-Yatay render:
-
-```sh
-npx remotion render remotion/index.ts CaptainPurpleIntroLandscape output/captain-purple-landscape.mp4
-```
-
-Video renderer 3055, Studio 3056 portunu kullanır; gerekirse `--port` ile değiştirilebilir. İlk render Remotion'un Chrome Headless Shell indirmesini gerektirebilir. Video DOM/perspektif adaptörü ortak sahne matematiğini kullanır; canlı scroll veya pointer'a dayanmaz. Ses dosyası verilmediği için video sessizdir.
-
-Remotion 4.0.538, Zod 4.5.4 sürümünü tam olarak sabitliyor. Güvenlik düzeltmesi için Zod 4.6.7 override edilmiştir. CLI bunun için sürüm uyarısı verir; bu projede Zod schema/Studio özellikleri kullanılmaz. Render ve typecheck sonucu ayrıca doğrulanır.
-
-## Doğrulama
-
-```sh
-npm test
-npm run lint
-npm run typecheck
-```
-
-Testler: ileri/geri seek'in deterministik olması, beat sınırları, darbe aralığı, azaltılmış hareket, tamamlanan aktivasyon, scroll iptali, abonelik temizliği ve kök/alt yol varlık yolları. Tarayıcı gözlemleri ve ekran görüntüleri `verification/` içinde tutulur.
-
-## Varlıklar ve sonraki kapsam
-
-Kahraman, built-in imagegen ile üretilen özgün ve kurgusal bir yetişkin karakterdir; IVE üyesi portresi değildir. Kaynak PNG `artwork/`, nihai prompt `artwork/PROMPT.md`, optimize edilmiş saydam görsel `public/heroes/captain-purple.webp` içindedir. SVG grafikler özgündür. Font lisansları `public/licenses/` içindedir.
-
-Hero Awakening, Hero Select, Hero Comics, Hero Cards, finale ve bunların Remotion kompozisyonları bu sürümde uygulanmadı. `26.10` için yıl/saat bilgisi verilmediğinden resmî yayın tarihi varsayılmadı. Sonraki bölümlerin planları dört ön yapım belgesinde bulunur.
-
-Unofficial fan-made creative experiment. IVE veya temsilcileriyle bağlantılı değildir.
+- `references/SOURCES.md` — research notes and sources for the real release facts.
+- `references/promo/` — official promo images saved for study only (git-ignored, never shipped).
+- `public/references/` — drop your own visual research here.
+- QA helpers: `scripts/shot.mjs`, `scripts/interact.mjs`, `scripts/perf.mjs`, `scripts/contact-sheet.py`.
