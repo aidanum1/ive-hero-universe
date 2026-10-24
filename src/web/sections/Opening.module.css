@@ -318,10 +318,12 @@
   inset: 0;
   z-index: 8;
   display: grid;
-  align-content: center;
+  /* "safe" keeps the gate below the nav and scrollable on very short viewports */
+  align-content: safe center;
   justify-items: start;
-  gap: 2rem;
-  padding: 0 clamp(24px, 10vw, 160px);
+  gap: clamp(1rem, 4vh, 2rem);
+  padding: 76px clamp(24px, 10vw, 160px) 24px;
+  overflow-y: auto;
   background: var(--c-ink);
   color: var(--c-paper);
   font-family: var(--f-pixel);
