@@ -11,7 +11,7 @@
     "render:all": "bash scripts/render-all.sh",
     "render:og": "remotion still OgImage public/og.png",
     "fonts": "node scripts/fetch-fonts.mjs",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "build:pages": "STATIC_EXPORT=1 next build",
     "sfx": "node scripts/build-sfx.mjs"
   },
