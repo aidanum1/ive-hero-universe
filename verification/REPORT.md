@@ -2,6 +2,12 @@
 
 24 Ekim 2026 · Prologue + Captain Purple
 
+## GitHub Pages yayını
+
+[Canlı site](https://aidanum1.github.io/ive-hero-universe/) HTTPS üzerinden yayınlandı. [İlk yayın çalışması](https://github.com/aidanum1/ive-hero-universe/actions/runs/40117863946) `30ce146` kaynak sürümünde kontrolleri, derlemeyi ve deploy'u başarıyla tamamladı. Pages kaynağı GitHub Actions; `main` güncellemeleri otomatik yayınlanır.
+
+Canlı adres ayrıca 1280 × 720 tarayıcı görünümünde açıldı: `/ive-hero-universe/` alt yolundaki bütün img varlıkları yüklendi, yerel fontlar `loaded` durumundaydı, WebGL başlangıcı hazırdı ve yatay taşma görülmedi. Captain Purple bölümüne geçiş ve tek tık aktivasyon denendi; sonuç `completed` / `released`, Canvas sayısı 0 ve tarayıcı konsolunda hata sayısı 0 idi. `live-signal.jpg`, `live-purple.jpg` ve `live-released.jpg` yerel görsel kayıtlardır.
+
 ## Otomatik kontroller
 
 | Kontrol | Sonuç |
